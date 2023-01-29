@@ -1,0 +1,62 @@
+<section
+  class="character_list"
+  infinite-scroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="300"
+  (scrolled)="onScroll()"
+>
+  <div
+    class="row row-cols-1 row-cols-md-2 row-cols-sm-1 row-cols-lg-3 text-center m-2"
+  >
+    <div class="col mt-4" *ngFor="let pokemon of pokemones">
+      <div class="card" *ngIf="pokemones.length !== 0">
+        <div class="card-header text-white bg-dark">
+          <h2>{{ pokemon.name | uppercase }}</h2>
+        </div>
+        <img
+          class="card-img-top img-fluid"
+          [src]="pokemon.sprites.front_default"
+          alt="Card"
+        />
+        <div class="card-body text-white bg-dark">
+          <div class="text-start">
+            <p class="card-text">
+              Experiencia base: {{ pokemon.base_experience }}
+            </p>
+            <div>
+              Habilidades: {{ pokemon.abilities[0].ability.name }}
+              <a *ngIf="pokemon.abilities[1]">
+                /
+                {{ pokemon.abilities[1].ability.name }}
+              </a>
+            </div>
+          </div>
+          <div class="mt-4">
+            <p class="btn btn-primary">
+              {{ pokemon.types[0].type.name | uppercase }}
+            </p>
+            <p class="mx-3 btn btn-danger" *ngIf="pokemon.types[1]">
+              {{ pokemon.types[1].type.name | uppercase }}
+            </p>
+          </div>
+
+          <a href="#" class="btn btn-danger d-block mt-2">Leer más...</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="row text-center" *ngIf="cargando">
+  <div class="col">
+    <img src="../../../assets/Loading.gif" width="80px" />
+  </div>
+</div>
+
+<button
+  [ngClass]="'no-hidden'"
+  *ngIf="showGoUpButton"
+  class="btn btn-dark"
+  (click)="scrollTop()"
+>
+  <i class="fa-solid fa-circle-up"></i>
+</button>
