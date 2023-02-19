@@ -1,7 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { HostListener, Inject } from '@angular/core';
+import { HostListener, Inject, Input } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import { tap } from 'rxjs';
 import { Pokemones } from '../interfaces/pokemons-interfaces';
 import { PokemonService } from '../services/pokemon.service';
 
@@ -11,6 +10,7 @@ import { PokemonService } from '../services/pokemon.service';
   styleUrls: ['./listado-pokemons.component.css'],
 })
 export class ListadoPokemonsComponent implements OnInit {
+  @Input() search: string = '';
   pokemones: Pokemones[] = [];
   j = 10;
   cargando: boolean = false;
@@ -26,12 +26,23 @@ export class ListadoPokemonsComponent implements OnInit {
 
   ngOnInit(): void {
     for (let i = 1; i <= 10; i++) {
-      this.pokemonService.getPokemones(i).subscribe((res) => {
-        this.pokemones.push(res);
+      this.pokemonService.getPokemones(i).subscribe((resp) => {
+        this.pokemones.push(resp);
       });
     }
-    console.log(this.pokemones);
   }
+  onScroll(): void {
+    this.cargando = true;
+    setTimeout(() => {
+      for (let i = 11; i <= 13; i++) {
+      this.pokemonService.getPokemones(++this.j).subscribe((pokemons) => {
+        this.pokemones.push(pokemons);
+        this.cargando = false;
+      });
+    }
+    }, 1000);
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll(): void {
     const yOffset = window.pageYOffset;
@@ -51,18 +62,6 @@ export class ListadoPokemonsComponent implements OnInit {
     }
   }
 
-  onScroll(): void {
-    this.pokemonService
-      .getPokemones(++this.j)
-      .pipe(
-        tap((_) => {
-          this.cargando = true;
-        })
-      )
-      .subscribe((pokemons: any) => {
-        this.pokemones.push(pokemons);
-      });
-  }
   scrollTop() {
     this.document.body.scrollTop = 0;
     this.document.documentElement.scrollTop = 0;

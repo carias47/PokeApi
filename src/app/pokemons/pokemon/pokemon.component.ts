@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Pokemon } from '../interfaces/pokemons-interfaces';
-import { PokemonService } from '../services/pokemon.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon',
@@ -8,6 +6,7 @@ import { PokemonService } from '../services/pokemon.service';
   styleUrls: ['./pokemon.component.css'],
 })
 export class PokemonComponent {
+  public search: string = '';
   constructor() {}
 
   // getPokemones() {
@@ -24,4 +23,8 @@ export class PokemonComponent {
   //   // }
   //   // console.log(this.pokemones);
   // }
+
+  onSearchPokemon(search: string) {
+    this.search = search;
+  }
 }

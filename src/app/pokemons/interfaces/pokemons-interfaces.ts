@@ -1,8 +1,3 @@
-export interface Pokemon {
-  name: string;
-  imagen: string;
-}
-
 export interface Pokemones {
   abilities: Ability[];
   base_experience: number;
