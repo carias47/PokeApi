@@ -1,12 +1,13 @@
 <div class="text-center" *ngIf="pokemones.length === 0; else divPoke">
   <div class="spinner-grow" style="width: 5rem; height: 5rem" role="status">
-    <span class="sr-only">Loading...</span>
+    <span>Loading...</span>
   </div>
 </div>
 
 <ng-template #divPoke>
   <div
     class="character_list"
+    data-aos="zoom-in-up"
     infiniteScroll
     [infiniteScrollDistance]="2"
     [infiniteScrollThrottle]="350"
@@ -23,7 +24,8 @@
           <img
             class="card-img-top img-fluid"
             [src]="pokemon.sprites.front_default"
-            alt="Card"
+            alt="pokemones"
+            title="{{ pokemon.name }}"
           />
           <div class="card-body text-white bg-dark">
             <div class="text-start">
