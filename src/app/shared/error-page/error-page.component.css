@@ -1,0 +1,18 @@
+
+.main{
+  background-color: black;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+#particles-js{
+  height: 100%;
+  width: 100%;
+  background-image: url(http://vincentgarreau.com/particles.js/assets/img/kbLd9vb_new.gif);
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: 0px 50%;
+}
+img{
+  width: 20%;
+}

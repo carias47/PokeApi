@@ -7,6 +7,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { BuscarPipe } from './pipes/buscar.pipe';
 import { PokemonIdComponent } from './pokemon-id/pokemon-id.component';
 import { PesoPokemonPipe } from './pipes/peso-pokemon.pipe';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { PesoPokemonPipe } from './pipes/peso-pokemon.pipe';
     BuscarPipe,
     PokemonIdComponent,
     PesoPokemonPipe,
+    HeaderComponent,
   ],
   imports: [CommonModule, PokemonRoutingModule, InfiniteScrollModule],
 })

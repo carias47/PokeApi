@@ -35,11 +35,11 @@ export class ListadoPokemonsComponent implements OnInit {
     this.cargando = true;
     setTimeout(() => {
       for (let i = 11; i <= 13; i++) {
-      this.pokemonService.getPokemones(++this.j).subscribe((pokemons) => {
-        this.pokemones.push(pokemons);
-        this.cargando = false;
-      });
-    }
+        this.pokemonService.getPokemones(++this.j).subscribe((pokemons) => {
+          this.pokemones.push(pokemons);
+          this.cargando = false;
+        });
+      }
     }, 1000);
   }
 
