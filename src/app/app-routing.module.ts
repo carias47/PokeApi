@@ -4,10 +4,16 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'pokemons',
+    pathMatch: 'full',
+  },
+  {
     path: 'pokemons',
     loadChildren: () =>
       import('./pokemons/pokemons.module').then((m) => m.PokemonsModule),
   },
+
   {
     path: '404',
     component: ErrorPageComponent,
